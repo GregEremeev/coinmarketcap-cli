@@ -1,4 +1,4 @@
-module coinmarketcap_cli
+module coinmarketcap-cli
 
 go 1.22.1
 

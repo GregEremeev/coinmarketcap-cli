@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"bufio"
-	"coinmarketcap_cli/clients"
+	"coinmarketcap-cli/clients"
 	"fmt"
 	"os"
 
