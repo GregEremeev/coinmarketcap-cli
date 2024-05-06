@@ -1,7 +1,7 @@
 package main
 
 import (
-	"coinmarketcap-cli/cmd"
+	"github.com/GregEremeev/coinmarketcap-cli/cmd"
 )
 
 func main() {

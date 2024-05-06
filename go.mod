@@ -1,4 +1,4 @@
-module coinmarketcap-cli
+module github.com/GregEremeev/coinmarketcap-cli
 
 go 1.22.1
 

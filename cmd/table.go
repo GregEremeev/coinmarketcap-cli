@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"bufio"
-	"coinmarketcap-cli/clients"
 	"fmt"
 	"os"
+
+	"github.com/GregEremeev/coinmarketcap-cli/clients"
 
 	"github.com/spf13/cobra"
 	"github.com/tomlazar/table"
