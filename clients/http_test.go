@@ -89,7 +89,7 @@ func TestMakeGetRequest(t *testing.T) {
 	defer patches.Reset()
 
 	httpClient := getHTTPClient()
-	res, err := httpClient.MakeGetRequest(expectedURL, expectedParams)
+	res, err := httpClient.MakeGetRequest(expectedURL, expectedParams, getDefaultHeaders())
 
 	if err != nil {
 		t.Fatalf("Err has to be nil but err is %v", err)

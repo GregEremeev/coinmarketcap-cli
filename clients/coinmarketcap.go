@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+
+	"github.com/Pallinder/go-randomdata"
 )
 
 // coinmarketcap API urls
@@ -63,7 +65,7 @@ func (cac CoinmarketcapAPIClient) GetSymbols(
 		"sortBy":   sortBy,
 		"sortType": sortType,
 	}
-	res, err := cac.httpClient.MakeGetRequest(CryptoListingAPIURL, queryParams)
+	res, err := cac.httpClient.MakeGetRequest(CryptoListingAPIURL, queryParams, getDefaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +83,7 @@ func (cac CoinmarketcapAPIClient) GetCoinIDBySymbol(symbol string) (int, error) 
 	queryParams := map[string]string{
 		"symbol": symbol,
 	}
-	res, err := cac.httpClient.MakeGetRequest(CryptoMapAPIURL, queryParams)
+	res, err := cac.httpClient.MakeGetRequest(CryptoMapAPIURL, queryParams, getDefaultHeaders())
 	if err != nil {
 		return -1, err
 	}
@@ -103,7 +105,7 @@ func (cac CoinmarketcapAPIClient) GetSymbolChart(
 		"id":    fmt.Sprintf("%d", symbolID),
 		"range": rangeType,
 	}
-	res, err := cac.httpClient.MakeGetRequest(CryptoChartAPIURL, queryParams)
+	res, err := cac.httpClient.MakeGetRequest(CryptoChartAPIURL, queryParams, getDefaultHeaders())
 	if err != nil {
 		return map[string]valuesChart{}, err
 	}
@@ -113,6 +115,12 @@ func (cac CoinmarketcapAPIClient) GetSymbolChart(
 		return map[string]valuesChart{}, err
 	}
 	return responseData.Data.Points, nil
+}
+
+func getDefaultHeaders() map[string]string {
+	return map[string]string{
+		"User-Agent": randomdata.UserAgentString(),
+	}
 }
 
 // CryptoChartResponse is a data structure with points to draw a chart

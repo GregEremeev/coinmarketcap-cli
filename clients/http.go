@@ -21,6 +21,7 @@ type customHTTPClient struct {
 func (chc customHTTPClient) MakeGetRequest(
 	urlPath string,
 	params map[string]string,
+	headers map[string]string,
 ) (*http.Response, error) {
 	finalURL, err := addQueryParams(urlPath, params)
 	if err != nil {
@@ -34,6 +35,9 @@ func (chc customHTTPClient) MakeGetRequest(
 	)
 	if err != nil {
 		return nil, err
+	}
+	for k, v := range headers {
+		req.Header.Set(k, v)
 	}
 	res, err := chc.httpClient.Do(req)
 	if err != nil {
